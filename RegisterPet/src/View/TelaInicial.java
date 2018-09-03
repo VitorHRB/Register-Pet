@@ -29,88 +29,103 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cadastar = new javax.swing.JButton();
+        cadastarusuario = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        loginusuario = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        cadastraradm = new javax.swing.JButton();
+        loginadm = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 255, 0));
-        jLabel1.setText("Bem Vindos ao Register Pet");
+        jLabel1.setForeground(new java.awt.Color(102, 0, 102));
+        jLabel1.setText("Bem-Vindo ao Register Pet");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(90, 60, 460, 60);
+        jLabel1.setBounds(100, -30, 460, 120);
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 0, 102));
         jLabel3.setText("É novo por aqui?");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 170, 190, 30);
+        jLabel3.setBounds(100, 100, 190, 30);
 
-        cadastar.setText("Cadastrar");
-        cadastar.addActionListener(new java.awt.event.ActionListener() {
+        cadastarusuario.setBackground(new java.awt.Color(102, 0, 102));
+        cadastarusuario.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        cadastarusuario.setForeground(new java.awt.Color(102, 0, 102));
+        cadastarusuario.setText("Cadastrar");
+        cadastarusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastarActionPerformed(evt);
+                cadastarusuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(cadastar);
-        cadastar.setBounds(100, 230, 110, 23);
+        getContentPane().add(cadastarusuario);
+        cadastarusuario.setBounds(120, 150, 110, 25);
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 0, 102));
         jLabel4.setText("Já é de casa?");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(70, 280, 180, 20);
+        jLabel4.setBounds(90, 210, 180, 20);
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        loginusuario.setBackground(new java.awt.Color(102, 0, 102));
+        loginusuario.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        loginusuario.setForeground(new java.awt.Color(102, 0, 102));
+        loginusuario.setText("Login");
+        loginusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginusuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(120, 330, 57, 23);
+        getContentPane().add(loginusuario);
+        loginusuario.setBounds(130, 260, 80, 25);
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 0, 102));
         jLabel5.setText("É administrador?");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(400, 160, 200, 26);
+        jLabel5.setBounds(370, 100, 200, 26);
 
-        jButton2.setText("Cadastrar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(440, 240, 100, 23);
+        cadastraradm.setBackground(new java.awt.Color(102, 0, 102));
+        cadastraradm.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        cadastraradm.setForeground(new java.awt.Color(102, 0, 102));
+        cadastraradm.setText("Cadastrar");
+        getContentPane().add(cadastraradm);
+        cadastraradm.setBounds(410, 150, 100, 25);
 
-        jButton3.setText("Login");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        loginadm.setBackground(new java.awt.Color(102, 0, 102));
+        loginadm.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        loginadm.setForeground(new java.awt.Color(102, 0, 102));
+        loginadm.setText("Login");
+        loginadm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                loginadmActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(450, 320, 73, 23);
+        getContentPane().add(loginadm);
+        loginadm.setBounds(420, 260, 73, 25);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/dog-1532627_960_720.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(-20, 40, 690, 380);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/TelaInicial.jpg"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(10, 0, 650, 380);
 
         setSize(new java.awt.Dimension(681, 426));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastarActionPerformed
+    private void cadastarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastarusuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cadastarActionPerformed
+    }//GEN-LAST:event_cadastarusuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void loginusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginusuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_loginusuarioActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void loginadmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginadmActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_loginadmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,14 +163,14 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cadastar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton cadastarusuario;
+    private javax.swing.JButton cadastraradm;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton loginadm;
+    private javax.swing.JButton loginusuario;
     // End of variables declaration//GEN-END:variables
 }
