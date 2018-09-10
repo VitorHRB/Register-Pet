@@ -5,17 +5,33 @@
  */
 package View;
 
+import DAO.ClienteDAO;
+import Model.Cliente;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
+
 /**
  *
  * @author Vitor Henrique
  */
 public class CadastroUsuario extends javax.swing.JFrame {
-
+    MaskFormatter mascaraTelefone;
+    public void criarMascara(){
+        try {
+           mascaraTelefone = new MaskFormatter("(##)#####-####");
+           mascaraTelefone.install(f_telefone);
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
     /**
      * Creates new form CadastroUsuario
      */
     public CadastroUsuario() {
         initComponents();
+        criarMascara();
     }
 
     /**
@@ -29,99 +45,157 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        f_nome = new javax.swing.JTextField();
         nomeusuario = new javax.swing.JLabel();
         enderecousuario = new javax.swing.JLabel();
         telefoneusuario = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         emailusuario = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        f_email = new javax.swing.JTextField();
+        f_endereco = new javax.swing.JTextField();
+        jButtoncadastrousuario = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        f_telefone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(677, 408));
         getContentPane().setLayout(null);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/CadastroCliente.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 11, 339, 390);
+        jLabel2.setBounds(10, 11, 339, 370);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 102));
         jLabel1.setText("     Cadastro Cliente");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(380, 0, 270, 50);
+        jLabel1.setBounds(380, 10, 270, 30);
 
-        jTextField1.setForeground(new java.awt.Color(153, 0, 153));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        f_nome.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        f_nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                f_nomeActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(370, 90, 290, 20);
+        getContentPane().add(f_nome);
+        f_nome.setBounds(370, 80, 290, 30);
 
         nomeusuario.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         nomeusuario.setForeground(new java.awt.Color(102, 0, 102));
         nomeusuario.setText("Nome: *");
         getContentPane().add(nomeusuario);
-        nomeusuario.setBounds(370, 70, 60, 18);
+        nomeusuario.setBounds(370, 60, 60, 18);
 
         enderecousuario.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         enderecousuario.setForeground(new java.awt.Color(102, 0, 102));
         enderecousuario.setText("Endereço: *");
         getContentPane().add(enderecousuario);
-        enderecousuario.setBounds(370, 120, 90, 18);
+        enderecousuario.setBounds(370, 110, 90, 18);
 
         telefoneusuario.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         telefoneusuario.setForeground(new java.awt.Color(102, 0, 102));
         telefoneusuario.setText("Telefone: *");
         getContentPane().add(telefoneusuario);
-        telefoneusuario.setBounds(370, 170, 90, 18);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(370, 190, 290, 20);
+        telefoneusuario.setBounds(370, 160, 90, 18);
 
         emailusuario.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         emailusuario.setForeground(new java.awt.Color(102, 0, 102));
         emailusuario.setText("E-mail: *");
         getContentPane().add(emailusuario);
-        emailusuario.setBounds(370, 220, 70, 18);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(370, 240, 290, 20);
+        emailusuario.setBounds(370, 210, 70, 18);
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 0, 102));
-        jLabel3.setText("Senha: *");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(370, 270, 70, 18);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(370, 140, 290, 20);
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(370, 290, 290, 20);
+        f_email.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        getContentPane().add(f_email);
+        f_email.setBounds(370, 240, 290, 30);
 
-        jButton1.setBackground(new java.awt.Color(102, 0, 102));
-        jButton1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(102, 0, 102));
-        jButton1.setText("Cadastrar");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(370, 320, 110, 25);
+        f_endereco.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        getContentPane().add(f_endereco);
+        f_endereco.setBounds(370, 130, 290, 30);
+
+        jButtoncadastrousuario.setBackground(new java.awt.Color(102, 0, 102));
+        jButtoncadastrousuario.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        jButtoncadastrousuario.setForeground(new java.awt.Color(255, 255, 255));
+        jButtoncadastrousuario.setText("Cadastrar");
+        jButtoncadastrousuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtoncadastrousuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtoncadastrousuario);
+        jButtoncadastrousuario.setBounds(370, 340, 110, 25);
 
         jButton2.setBackground(new java.awt.Color(102, 0, 102));
         jButton2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(102, 0, 102));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cancelar Cadastro");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
-        jButton2.setBounds(490, 320, 170, 25);
+        jButton2.setBounds(490, 340, 170, 25);
 
-        pack();
+        f_telefone.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        getContentPane().add(f_telefone);
+        f_telefone.setBounds(370, 180, 290, 30);
+
+        setSize(new java.awt.Dimension(693, 447));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void f_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_nomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_f_nomeActionPerformed
+    public boolean checaCampos(){
+        if(f_nome.getText().length()>0 && f_endereco.getText().length()>0 && f_telefone.getText().length()>0) {
+            if(validar(f_email.getText()) == false){
+                JOptionPane.showMessageDialog(null, "Informe um e-mail válido!");
+                return false;  
+        }    
+            return true;
+           
+        }
+
+        return false;
+    }
+    
+    public static boolean validar(String email)
+    {
+        boolean isEmailIdValid = false;
+        if (email != null && email.length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(email);
+            if (matcher.matches()) {
+                isEmailIdValid = true;
+            }
+        }
+        return isEmailIdValid;
+    }
+    private void jButtoncadastrousuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncadastrousuarioActionPerformed
+      /*PerfilUsuario cadAni = new PerfilUsuario();
+      cadAni.setVisible(true);
+      dispose();*/
+      if(checaCampos() == true){
+            Cliente c = new Cliente();
+            c.setNome(f_nome.getText());
+            c.setEndereco(f_endereco.getText());
+            c.setTelefone(f_telefone.getText());
+            c.setEmail(f_email.getText());
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.create(c);
+            setVisible(false);
+        } else {
+          JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+      }
+        
+    }//GEN-LAST:event_jButtoncadastrousuarioActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PerfilAdm tela = new PerfilAdm();
+        tela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,16 +235,14 @@ public class CadastroUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel emailusuario;
     private javax.swing.JLabel enderecousuario;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField f_email;
+    private javax.swing.JTextField f_endereco;
+    private javax.swing.JTextField f_nome;
+    private javax.swing.JFormattedTextField f_telefone;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtoncadastrousuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel nomeusuario;
     private javax.swing.JLabel telefoneusuario;
     // End of variables declaration//GEN-END:variables

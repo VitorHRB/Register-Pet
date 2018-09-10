@@ -32,12 +32,10 @@ public class TelaInicial extends javax.swing.JFrame {
         cadastarusuario = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         loginusuario = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        cadastraradm = new javax.swing.JButton();
-        loginadm = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(677, 408));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
@@ -50,11 +48,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 0, 102));
         jLabel3.setText("É novo por aqui?");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(100, 100, 190, 30);
+        jLabel3.setBounds(220, 100, 190, 30);
 
         cadastarusuario.setBackground(new java.awt.Color(102, 0, 102));
         cadastarusuario.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        cadastarusuario.setForeground(new java.awt.Color(102, 0, 102));
+        cadastarusuario.setForeground(new java.awt.Color(255, 255, 255));
         cadastarusuario.setText("Cadastrar");
         cadastarusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,17 +60,17 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cadastarusuario);
-        cadastarusuario.setBounds(120, 150, 110, 25);
+        cadastarusuario.setBounds(240, 150, 110, 25);
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 0, 102));
         jLabel4.setText("Já é de casa?");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(90, 210, 180, 20);
+        jLabel4.setBounds(220, 200, 180, 20);
 
         loginusuario.setBackground(new java.awt.Color(102, 0, 102));
         loginusuario.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        loginusuario.setForeground(new java.awt.Color(102, 0, 102));
+        loginusuario.setForeground(new java.awt.Color(255, 255, 255));
         loginusuario.setText("Login");
         loginusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,52 +78,27 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         getContentPane().add(loginusuario);
-        loginusuario.setBounds(130, 260, 80, 25);
-
-        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 0, 102));
-        jLabel5.setText("É administrador?");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(370, 100, 200, 26);
-
-        cadastraradm.setBackground(new java.awt.Color(102, 0, 102));
-        cadastraradm.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        cadastraradm.setForeground(new java.awt.Color(102, 0, 102));
-        cadastraradm.setText("Cadastrar");
-        getContentPane().add(cadastraradm);
-        cadastraradm.setBounds(410, 150, 100, 25);
-
-        loginadm.setBackground(new java.awt.Color(102, 0, 102));
-        loginadm.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        loginadm.setForeground(new java.awt.Color(102, 0, 102));
-        loginadm.setText("Login");
-        loginadm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginadmActionPerformed(evt);
-            }
-        });
-        getContentPane().add(loginadm);
-        loginadm.setBounds(420, 260, 73, 25);
+        loginusuario.setBounds(250, 250, 80, 25);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/TelaInicial.jpg"))); // NOI18N
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 0, 650, 380);
+        jLabel6.setBounds(20, -180, 1330, 810);
 
-        setSize(new java.awt.Dimension(681, 426));
+        setSize(new java.awt.Dimension(693, 527));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastarusuarioActionPerformed
-        // TODO add your handling code here:
+       CadastroAdm cadAdm = new CadastroAdm();
+       cadAdm.setVisible(true);
+       dispose();
     }//GEN-LAST:event_cadastarusuarioActionPerformed
 
     private void loginusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginusuarioActionPerformed
-        // TODO add your handling code here:
+        LoginAdm logUsu = new LoginAdm();
+        logUsu.setVisible(true);
+        dispose();
     }//GEN-LAST:event_loginusuarioActionPerformed
-
-    private void loginadmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginadmActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginadmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,13 +137,10 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastarusuario;
-    private javax.swing.JButton cadastraradm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JButton loginadm;
     private javax.swing.JButton loginusuario;
     // End of variables declaration//GEN-END:variables
 }
