@@ -9,6 +9,9 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import Model.Adm;
+import DAO.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author Vitor Henrique
@@ -19,7 +22,58 @@ public class AdmDAO {
     public AdmDAO(){
         conn = ConnectionDAO.getConnection();
     }
-    
+    public boolean LoginAdm(String email, String senha) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Connection conexao = null;
+        boolean sucesso = false;
+        String sql = "select * from administrador where email =? and senha=?";
+
+        try {
+            conexao = conn;
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                sucesso = true;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro SQL usuários: " + e);
+        } finally {
+            conexao.close();
+
+        }
+
+        return sucesso;
+    }
+    public boolean LoginUser(String email, String senha) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Connection conexao = null;
+        boolean sucesso = false;
+        String sql = "select * from cliente where email =? and senha=?";
+
+        try {
+            conexao = conn;
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                sucesso = true;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro SQL usuários: " + e);
+        } finally {
+            conexao.close();
+
+        }
+
+        return sucesso;
+    }
     public void create(Adm m){
         try {
             PreparedStatement stmt= conn.prepareStatement("INSERT INTO administrador(nome,telefone, endereco, email, senha)"
