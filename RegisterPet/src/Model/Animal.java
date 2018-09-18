@@ -11,6 +11,7 @@ package Model;
  */
 public class Animal {
     private String nomeAnimal;
+    private String animal;
     private String raca;
     private String nomeDono;
     private String telefone;
@@ -25,6 +26,13 @@ public class Animal {
         this.nomeAnimal = nomeAnimal;
     }
 
+    public String getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(String animal) {
+        this.animal = animal;
+    }
     public String getRaca() {
         return raca;
     }

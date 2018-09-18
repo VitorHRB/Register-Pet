@@ -184,6 +184,9 @@ public class CadastroUsuario extends javax.swing.JFrame {
             c.setEmail(f_email.getText());
             ClienteDAO clienteDAO = new ClienteDAO();
             clienteDAO.create(c);
+            PerfilAdm perfil = new PerfilAdm();
+            perfil.setVisible(true);
+            dispose();
             setVisible(false);
         } else {
           JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");

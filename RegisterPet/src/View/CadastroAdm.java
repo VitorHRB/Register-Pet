@@ -120,6 +120,8 @@ public class CadastroAdm extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 0, 102));
         jLabel3.setText("Senha: *");
 
+        f_senha.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,9 +229,7 @@ public class CadastroAdm extends javax.swing.JFrame {
         return isEmailIdValid;
     }
     private void jButtoncadastrousuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncadastrousuarioActionPerformed
-        /*PerfilAdm cadAni = new PerfilAdm();
-        cadAni.setVisible(true);
-        dispose();*/
+        
         if(checaCampos() == true){
             Adm m = new Adm();
             m.setNome(f_nome.getText());
@@ -239,15 +239,16 @@ public class CadastroAdm extends javax.swing.JFrame {
             m.setSenha(String.valueOf(f_senha.getPassword()));
             AdmDAO admDAO = new AdmDAO();
             admDAO.create(m);
+   
             setVisible(false);
         }else {
            JOptionPane.showMessageDialog(null, "Há campos não preenchidos");
         }
-
+            
     }//GEN-LAST:event_jButtoncadastrousuarioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        PerfilAdm tela = new PerfilAdm();
+        TelaInicial tela = new TelaInicial();
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

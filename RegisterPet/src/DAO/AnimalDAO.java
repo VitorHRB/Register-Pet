@@ -22,14 +22,15 @@ public class AnimalDAO {
     
     public void create(Animal a){
         try {
-            PreparedStatement stmt= conn.prepareStatement("INSERT INTO animal(nome, raca, dono, telefone, endereco, servico)"
-                    + "VALUES(?,?,?,?,?,?);");
+            PreparedStatement stmt= conn.prepareStatement("INSERT INTO animal(nome, animal, raca, dono, telefone, endereco, servico)"
+                    + "VALUES(?,?,?,?,?,?,?);");
             stmt.setString(1, a.getNomeAnimal());
-            stmt.setString(2, a.getRaca());
-            stmt.setString(3, a.getNomeDono());
-            stmt.setString(4, a.getTelefone());
-            stmt.setString(5, a.getEndereco());
-            stmt.setString(6, a.getServico());
+            stmt.setString(2, a.getAnimal());
+            stmt.setString(3, a.getRaca());
+            stmt.setString(4, a.getNomeDono());
+            stmt.setString(5, a.getTelefone());
+            stmt.setString(6, a.getEndereco());
+            stmt.setString(7, a.getServico());
             stmt.executeUpdate();
             stmt.close();
             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");

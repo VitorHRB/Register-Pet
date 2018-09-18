@@ -4,7 +4,12 @@
  * and open the template in the editor.
  */
 package View;
-
+import DAO.*;
+import Model.Adm;
+import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Vitor Henrique
@@ -17,7 +22,53 @@ public class LoginAdm extends javax.swing.JFrame {
     public LoginAdm() {
         initComponents();
     }
+     public boolean checaCampos(){
+        if(String.valueOf(f_senha.getPassword()).length()>0) {
+           if(validar(f_email.getText()) == false){
+            JOptionPane.showMessageDialog(null, "Informe um e-mail válido!");
+            return false;  
+        } 
+           return true;
+        }
+        return false;
+        
+    }
+        public static boolean validar(String email)
+    {
+        boolean isEmailIdValid = false;
+        if (email != null && email.length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(email);
+            if (matcher.matches()) {
+                isEmailIdValid = true;
+            }
+        }
+        return isEmailIdValid;
+    }
+    private void Conecta() {
+        
+        
+        AdmDAO AdmDao = new AdmDAO();
+        String pass = new String(f_senha.getPassword());
+        String user = f_email.getText();
 
+        try {
+            if (AdmDao.LoginAdm(user, pass)) {
+                 PerfilAdm perfilAdm = new PerfilAdm();
+                    perfilAdm.setVisible(true);
+                     dispose();
+                
+            } else {
+                
+                JOptionPane.showMessageDialog(null,"Dados Incorretos!!!");
+                    
+                    }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,14 +81,13 @@ public class LoginAdm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        f_email = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        b_login = new javax.swing.JButton();
+        f_senha = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(677, 408));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/LoginAdm.jpg"))); // NOI18N
 
@@ -51,10 +101,10 @@ public class LoginAdm extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 0, 102));
         jLabel3.setText("E-mail: *");
 
-        jTextField1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        f_email.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        f_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                f_emailActionPerformed(evt);
             }
         });
 
@@ -63,13 +113,20 @@ public class LoginAdm extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(102, 0, 102));
         jLabel4.setText("Senha: *");
 
-        jButton1.setBackground(new java.awt.Color(102, 0, 102));
-        jButton1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        b_login.setBackground(new java.awt.Color(102, 0, 102));
+        b_login.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        b_login.setForeground(new java.awt.Color(255, 255, 255));
+        b_login.setText("Login");
+        b_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                b_loginActionPerformed(evt);
+            }
+        });
+
+        f_senha.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
+        f_senha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f_senhaActionPerformed(evt);
             }
         });
 
@@ -97,7 +154,7 @@ public class LoginAdm extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(10, 10, 10)
-                            .addComponent(jButton1)
+                            .addComponent(b_login)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                             .addComponent(jButton2)
                             .addGap(9, 9, 9))
@@ -106,8 +163,8 @@ public class LoginAdm extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel4)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                                .addComponent(jPasswordField1)))))
+                                .addComponent(f_email, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                                .addComponent(f_senha)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,14 +175,14 @@ public class LoginAdm extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(f_email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(f_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(b_login)
                     .addComponent(jButton2))
                 .addContainerGap(115, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -137,21 +194,32 @@ public class LoginAdm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void f_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_f_emailActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       PerfilAdm perfilAdm = new PerfilAdm();
-       perfilAdm.setVisible(true);
-       dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
+      // PerfilAdm perfilAdm = new PerfilAdm();
+     //  perfilAdm.setVisible(true);
+      // dispose();
+      if(checaCampos() == true){
+          Conecta();
+        }else {
+           JOptionPane.showMessageDialog(null, "Há campos não preenchidos");
+        }
+
+      
+    }//GEN-LAST:event_b_loginActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         TelaInicial tela = new TelaInicial();
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void f_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_senhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_senhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,13 +257,13 @@ public class LoginAdm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton b_login;
+    private javax.swing.JTextField f_email;
+    private javax.swing.JPasswordField f_senha;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
